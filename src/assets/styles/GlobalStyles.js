@@ -9,15 +9,13 @@ export const GlobalStyles = createGlobalStyle`
   *, *::after, *::before {
     box-sizing: inherit;
     font-weight: normal;
-  }
-
-  p {
     margin: 0;
+    letter-spacing: 0.3px;
   }
 
   body {
     font-family: 'Roboto', sans-serif;
-
+    color: ${({ theme }) => theme.colors.main}
   }
 
   a, button, textarea {
