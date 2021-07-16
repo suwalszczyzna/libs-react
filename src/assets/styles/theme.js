@@ -11,11 +11,11 @@ export const theme = {
     stroke: '#F0F0F0',
   },
   fonts: {
-    l: '18px',
+    l: '16px',
     m: '12px',
     s: '10px',
   },
   sizes: {
-    siteWidth: '800px',
+    siteWidth: '750px',
   },
 };

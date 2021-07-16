@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { links } from 'data/links';
 import { LinkItem } from 'components/molecules/LinkItem/LinkItem';
 import styled from 'styled-components';

@@ -19,12 +19,14 @@ export const LinkCard = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-right: 25px;
+      margin-right: 5px;
       width: 50px;
       height: 100%;
+      text-align: center;
     }
 
     & > div:last-child {
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;

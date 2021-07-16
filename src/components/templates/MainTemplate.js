@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from 'components/organisms/Navbar/Navbar';
+import { device } from 'assets/styles/rwd';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,8 +13,16 @@ const Wrapper = styled.div`
 `;
 
 const InnterWrapper = styled.div`
-  width: ${({ theme }) => theme.sizes.siteWidth};
   margin: 0 auto;
+
+  @media only screen and ${device.mobileS} {
+    margin: 10px;
+  }
+
+  @media only screen and ${device.tablet} {
+    width: ${({ theme }) => theme.sizes.siteWidth};
+    margin: 0 auto;
+  }
 `;
 
 const MainTemplate = ({ children }) => {
