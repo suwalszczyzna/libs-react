@@ -20,7 +20,7 @@ export const LinkCard = styled.div`
       align-items: center;
       justify-content: center;
       margin-right: 5px;
-      width: 50px;
+      width: 55px;
       height: 100%;
       text-align: center;
     }
@@ -29,13 +29,14 @@ export const LinkCard = styled.div`
       margin-left: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
   }
 `;
 
 export const LinkFavicon = styled.img`
-  width: 35px;
+  width: 50px;
+  border-radius: 10px;
 `;
 
 export const DateText = styled.p`

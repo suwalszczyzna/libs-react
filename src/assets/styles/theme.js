@@ -12,8 +12,8 @@ export const theme = {
   },
   fonts: {
     l: '16px',
-    m: '12px',
-    s: '10px',
+    m: '14px',
+    s: '12px',
   },
   sizes: {
     siteWidth: '750px',

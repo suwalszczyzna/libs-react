@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CardTitle } from 'components/atoms/CardTitle/CardTitle';
 import { Tag } from 'components/atoms/Tag/Tag';
-import { LikeButton } from 'components/atoms/LikeButton/LikeButton';
 import { LinkShape } from 'Types';
 import {
   DateText,
@@ -33,7 +32,6 @@ export const LinkItem = ({
           </div>
         </div>
       </div>
-      <LikeButton likes={likes} />
     </LinkCard>
   );
 };
