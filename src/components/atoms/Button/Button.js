@@ -15,4 +15,11 @@ export const Button = styled.button`
   :hover {
     background-color: ${({ theme }) => theme.colors.successHover};
   }
+
+  :disabled {
+    background: none;
+    border: 1px solid ${({ theme }) => theme.colors.disabled};
+    color: ${({ theme }) => theme.colors.disabled};
+    cursor: no-drop;
+  }
 `;

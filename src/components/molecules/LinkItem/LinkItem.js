@@ -4,11 +4,12 @@ import { CardTitle } from 'components/atoms/CardTitle/CardTitle';
 import { Tag } from 'components/atoms/Tag/Tag';
 import { LinkShape } from 'Types';
 import {
-  DateText,
   LinkCard,
   LinkFavicon,
 } from 'components/molecules/LinkItem/LinkItem.styles';
 import moment from 'moment';
+import { SmallText } from 'components/atoms/SmallText/SmallText';
+import { getBaseUrl } from 'components/Utils/TextUtils';
 
 export const LinkItem = ({
   link: { id, title, tags, date, url, likes = 0 },
@@ -21,10 +22,13 @@ export const LinkItem = ({
             src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
             alt="Category"
           />
-          <DateText>{moment(date).format('MMM Do')}</DateText>
+          <SmallText>{moment(date).format('MMM Do')}</SmallText>
         </div>
         <div>
-          <CardTitle href={url}>{title}</CardTitle>
+          <div>
+            <CardTitle href={url}>{title}</CardTitle>
+            <SmallText>{getBaseUrl(url)}</SmallText>
+          </div>
           <div>
             {tags.map((tag) => (
               <Tag key={tag} name={tag} />

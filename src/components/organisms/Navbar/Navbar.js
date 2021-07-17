@@ -7,7 +7,7 @@ const Navbar = () => (
   <Wrapper>
     <InnerWrapper>
       <Logo src={SiteLogo} alt="Site logo" />
-      <Button>Add new link</Button>
+      <Button disabled>Add new link</Button>
     </InnerWrapper>
   </Wrapper>
 );

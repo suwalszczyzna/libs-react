@@ -8,11 +8,11 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   font-size: ${({ theme }) => theme.fonts.s};
   padding: 4px 10px;
-  margin-right: 5px;
+  margin: 5px 5px 0 0;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
 
   :hover {
     background: ${({ theme }) => theme.colors.warning};
