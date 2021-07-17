@@ -9,7 +9,7 @@ import {
 } from 'components/molecules/LinkItem/LinkItem.styles';
 import moment from 'moment';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
-import { getBaseUrl } from 'components/Utils/TextUtils';
+import { getBaseUrl } from 'Utils/TextUtils';
 
 export const LinkItem = ({
   link: { id, title, tags, date, url, likes = 0 },
