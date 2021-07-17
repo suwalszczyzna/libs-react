@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CardTitle } from 'components/atoms/CardTitle/CardTitle';
-import CategoryIcon from 'assets/icons/category_icon.svg';
 import { Tag } from 'components/atoms/Tag/Tag';
 import { LikeButton } from 'components/atoms/LikeButton/LikeButton';
 import { LinkShape } from 'Types';
 import {
   DateText,
   LinkCard,
-  StyledImg,
+  LinkFavicon,
 } from 'components/molecules/LinkItem/LinkItem.styles';
 import moment from 'moment';
 
@@ -19,7 +18,10 @@ export const LinkItem = ({
     <LinkCard>
       <div>
         <div>
-          <StyledImg src={CategoryIcon} alt="Category" />
+          <LinkFavicon
+            src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
+            alt="Category"
+          />
           <DateText>{moment(date).format('MMM Do')}</DateText>
         </div>
         <div>

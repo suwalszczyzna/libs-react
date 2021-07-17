@@ -34,8 +34,8 @@ export const LinkCard = styled.div`
   }
 `;
 
-export const StyledImg = styled.img`
-  width: 23px;
+export const LinkFavicon = styled.img`
+  width: 35px;
 `;
 
 export const DateText = styled.p`
