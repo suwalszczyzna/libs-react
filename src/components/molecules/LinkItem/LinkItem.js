@@ -11,9 +11,7 @@ import moment from 'moment';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
 import { getBaseUrl } from 'Utils/TextUtils';
 
-export const LinkItem = ({
-  link: { id, title, tags, date, url, likes = 0 },
-}) => {
+export const LinkItem = ({ link: { id, title, tags, date, url } }) => {
   return (
     <LinkCard>
       <div>

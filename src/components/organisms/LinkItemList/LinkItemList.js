@@ -1,7 +1,7 @@
-import React from 'react';
-import { links } from 'data/links';
+import React, { useEffect, useState } from 'react';
 import { LinkItem } from 'components/molecules/LinkItem/LinkItem';
 import styled from 'styled-components';
+import firebase from 'libs/firebase';
 
 const Wrapper = styled.div`
   & > * {
@@ -10,6 +10,19 @@ const Wrapper = styled.div`
 `;
 
 export const LinkItemList = () => {
+  const [links, setLinks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = firebase.firestore();
+      const data = await db.collection('links').get();
+      const docs = data.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+      setLinks(docs);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Wrapper>
       {links.map((item) => (
@@ -18,5 +31,3 @@ export const LinkItemList = () => {
     </Wrapper>
   );
 };
-
-LinkItemList.propTypes = {};

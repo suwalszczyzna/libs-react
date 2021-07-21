@@ -15,7 +15,8 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
-    color: ${({ theme }) => theme.colors.main}
+    color: ${({ theme }) => theme.colors.main};
+    background-color: ${({ theme }) => theme.colors.siteBackground};
   }
 
   a, button, textarea {

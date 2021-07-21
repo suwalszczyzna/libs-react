@@ -6,5 +6,4 @@ export const LinkShape = {
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   date: PropTypes.string.isRequired.isRequired,
   url: PropTypes.string.isRequired,
-  likes: PropTypes.number,
 };
