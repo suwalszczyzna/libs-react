@@ -6,6 +6,8 @@ export default function useGetLinks(lastItem) {
   const [error, setError] = useState(false);
   const [links, setLinks] = useState([]);
 
+  useEffect(() => setLinks([]), []);
+
   useEffect(() => {
     setLoading(true);
     setError(false);
