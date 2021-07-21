@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import LinkItem from 'components/molecules/LinkItem/LinkItem';
 import styled from 'styled-components';
 import useGetLinks from 'hooks/useGetLinks';
+import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 
 const Wrapper = styled.div`
   & > * {
@@ -38,7 +39,7 @@ export const LinkItemList = () => {
           return <LinkItem key={item.id} link={item} />;
         }
       })}
-      <div>{loading && 'Loading...'}</div>
+      {loading && <LoaderSpinner />}
       <div>{error && 'Error'}</div>
     </Wrapper>
   );
