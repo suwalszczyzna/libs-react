@@ -11,10 +11,10 @@ import moment from 'moment';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
 import { getBaseUrl } from 'Utils/TextUtils';
 
-export const LinkItem = ({ link: { id, title, tags, date, url } }) => {
+const LinkItem = ({ link: { id, title, tags, date, url } }, ref) => {
   return (
     <LinkCard>
-      <div>
+      <div ref={ref}>
         <div>
           <LinkFavicon
             src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
@@ -37,6 +37,8 @@ export const LinkItem = ({ link: { id, title, tags, date, url } }) => {
     </LinkCard>
   );
 };
+
+export default React.forwardRef(LinkItem);
 
 LinkItem.propTypes = {
   link: PropTypes.shape(LinkShape),
