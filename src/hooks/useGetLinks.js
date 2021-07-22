@@ -22,6 +22,7 @@ export default function useGetLinks(lastItem) {
       .catch((e) => {
         console.log(e);
         setError(e);
+        setLoading(false);
       });
   }, [lastItem]);
 
