@@ -6,16 +6,16 @@ const Wrapper = styled.div`
   display: inline;
   background: ${({ theme }) => theme.colors.siteBackground};
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fonts.s};
+  font-size: ${({ theme }) => theme.fonts.xs};
   padding: 4px 10px;
   margin: 5px 5px 0 0;
-  border-radius: 10px;
+  border-radius: 7px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   letter-spacing: 0.8px;
 
   :hover {
-    background: ${({ theme }) => theme.colors.warning};
+    background: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.elementBackground};
   }
 `;

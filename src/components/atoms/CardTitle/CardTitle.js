@@ -6,9 +6,9 @@ export const CardTitle = styled.a`
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: text-decoration 0.2s ease;
+  transition: color 0.2s ease;
 
   :hover {
-    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;

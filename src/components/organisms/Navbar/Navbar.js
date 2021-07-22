@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button } from 'components/atoms/Button/Button';
-import { InnerWrapper, Logo, Wrapper } from './Navbar.styles';
-import SiteLogo from 'assets/icons/logo.svg';
+import { InnerWrapper, Wrapper } from './Navbar.styles';
 
 const Navbar = () => (
   <Wrapper>
     <InnerWrapper>
-      <Logo src={SiteLogo} alt="Site logo" />
-      <Button disabled>Add new link</Button>
+      <h1>links</h1>
+      <Button>+ Add new link</Button>
     </InnerWrapper>
   </Wrapper>
 );

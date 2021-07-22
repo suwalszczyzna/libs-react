@@ -18,14 +18,14 @@ const LinkItem = ({ link: { id, title, tags, date, url } }, ref) => {
         <div>
           <LinkFavicon
             src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
-            alt="Category"
+            alt={`Favicon of ${title}`}
           />
           <SmallText>{moment(date).format('MMM Do')}</SmallText>
         </div>
         <div>
           <div>
             <CardTitle href={url}>{title}</CardTitle>
-            <SmallText>{getBaseUrl(url)}</SmallText>
+            <SmallText secondary>{getBaseUrl(url)}</SmallText>
           </div>
           <div>
             {tags.map((tag) => (
@@ -37,7 +37,6 @@ const LinkItem = ({ link: { id, title, tags, date, url } }, ref) => {
     </LinkCard>
   );
 };
-
 export default React.forwardRef(LinkItem);
 
 LinkItem.propTypes = {

@@ -12,7 +12,7 @@ const spin = keyframes`
 export const LoaderSpinner = styled.div`
   margin: 0 auto;
   border: 6px solid ${({ theme }) => theme.colors.stroke};
-  border-top: 6px solid ${({ theme }) => theme.colors.success};
+  border-top: 6px solid ${({ theme }) => theme.colors.accent};
   border-radius: 50%;
   width: 60px;
   height: 60px;
