@@ -7,11 +7,11 @@ import {
   LinkCard,
   LinkFavicon,
 } from 'components/molecules/LinkItem/LinkItem.styles';
-import moment from 'moment';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
 import { getBaseUrl } from 'Utils/TextUtils';
+import { getFormattedData } from 'Utils/DateUtils';
 
-const LinkItem = ({ link: { id, title, tags, date, url } }, ref) => {
+const LinkItem = ({ link: { id, title, tags, createdAt, url } }, ref) => {
   return (
     <LinkCard>
       <div ref={ref}>
@@ -20,11 +20,13 @@ const LinkItem = ({ link: { id, title, tags, date, url } }, ref) => {
             src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
             alt={`Favicon of ${title}`}
           />
-          <SmallText>{moment(date).format('MMM Do')}</SmallText>
+          <SmallText>{getFormattedData(createdAt, 'MMM DD')}</SmallText>
         </div>
         <div>
           <div>
-            <CardTitle href={url}>{title}</CardTitle>
+            <CardTitle target="_blank" rel="noopener noreferrer" href={url}>
+              {title}
+            </CardTitle>
             <SmallText secondary>{getBaseUrl(url)}</SmallText>
           </div>
           <div>
