@@ -14,10 +14,12 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 
 export const getLinks = async (lastItem) => {
-  const ref = db
-    .collection('links')
-    .orderBy('createdAt')
-    .startAfter(lastItem || 0)
-    .limit(15);
+  const ref = lastItem
+    ? db
+        .collection('links')
+        .orderBy('createdAt', 'desc')
+        .startAfter(lastItem)
+        .limit(15)
+    : db.collection('links').orderBy('createdAt', 'desc').limit(15);
   return await ref.get();
 };
