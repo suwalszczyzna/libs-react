@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'components/atoms/Button/Button';
+import { NavItemButton } from 'components/atoms/NavItemButton/NavItemButton';
 import { InnerWrapper, Wrapper } from './Navbar.styles';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const Navbar = () => (
       </Link>
 
       <Link to="/add-link">
-        <Button>+ Add new link</Button>
+        <NavItemButton>+ Add new link</NavItemButton>
       </Link>
     </InnerWrapper>
   </Wrapper>
