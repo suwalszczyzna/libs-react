@@ -1,12 +1,18 @@
 import React from 'react';
 import { Button } from 'components/atoms/Button/Button';
 import { InnerWrapper, Wrapper } from './Navbar.styles';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => (
   <Wrapper>
     <InnerWrapper>
-      <h1>links</h1>
-      <Button>+ Add new link</Button>
+      <Link to="/">
+        <h1>links</h1>
+      </Link>
+
+      <Link to="/add-link">
+        <Button>+ Add new link</Button>
+      </Link>
     </InnerWrapper>
   </Wrapper>
 );

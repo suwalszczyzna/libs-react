@@ -1,19 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import LinkItem from 'components/molecules/LinkItem/LinkItem';
-import styled from 'styled-components';
 import useGetLinks from 'hooks/useGetLinks';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
-import { SectionTitle } from 'components/atoms/SectionTitle/SectionTitle';
-
-const Wrapper = styled.div`
-  & > * {
-    margin-bottom: 20px;
-  }
-
-  ${SectionTitle} {
-    margin-bottom: 50px;
-  }
-`;
 
 export const LinkItemList = () => {
   const [lastItem, setLastItem] = useState(0);
@@ -35,8 +23,7 @@ export const LinkItemList = () => {
   );
 
   return (
-    <Wrapper>
-      <SectionTitle>Fresh resources</SectionTitle>
+    <>
       {links.map((link, index) => {
         const item = { ...link.data(), id: link.id };
         if (links.length === index + 1) {
@@ -47,6 +34,6 @@ export const LinkItemList = () => {
       })}
       {loading && <LoaderSpinner />}
       <div>{error && 'Error'}</div>
-    </Wrapper>
+    </>
   );
 };
