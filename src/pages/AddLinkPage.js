@@ -5,6 +5,9 @@ import { PageInnerWrapper } from 'components/atoms/PageInnerWrapper/PageInnerWra
 import { Button } from 'components/atoms/Button/Button';
 import styled from 'styled-components';
 import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
+import useGetTags from 'hooks/useGetTags';
+import { getTagOptions } from 'Utils/DataUtils';
+import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -13,26 +16,32 @@ const ButtonWrapper = styled.div`
   margin-top: 50px;
 `;
 
-const tagOptions = [
-  { value: 'javascript', label: 'javascript' },
-  { value: 'react', label: 'react' },
-  { value: 'python', label: 'python' },
-  { value: 'html', label: 'html' },
-];
-
 const AddLinkPage = () => {
+  const { tags, loading } = useGetTags();
+
   return (
     <PageInnerWrapper>
       <SectionTitle>Add new link</SectionTitle>
+      <p>✂ Paste your url below, give it name and appropriate tags ✨</p>
       <InputForm
-        label={'Paste your url here'}
+        label={'Your url here'}
         placeholder={'eg. https://google.com'}
       />
       <InputForm label={'Title'} />
-      <MultiSelect name="tags" placeholder="Choose tags" options={tagOptions} />
-      <ButtonWrapper>
-        <Button>Add link</Button>
-      </ButtonWrapper>
+      {loading ? (
+        <LoaderSpinner />
+      ) : (
+        <>
+          <MultiSelect
+            name="tags"
+            placeholder="Choose tags"
+            options={getTagOptions(tags)}
+          />
+          <ButtonWrapper>
+            <Button>Add link</Button>
+          </ButtonWrapper>
+        </>
+      )}
     </PageInnerWrapper>
   );
 };

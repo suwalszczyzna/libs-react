@@ -23,3 +23,13 @@ export const getLinks = async (lastItem) => {
     : db.collection('links').orderBy('createdAt', 'desc').limit(15);
   return await ref.get();
 };
+
+export const getTags = async () => {
+  const ref = db.collection('tags').orderBy('name');
+  return await ref.get();
+};
+
+export const getTagById = async (tagId) => {
+  const ref = db.collection('tags').doc(tagId);
+  return ref.get();
+};

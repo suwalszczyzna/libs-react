@@ -31,7 +31,7 @@ const LinkItem = ({ link: { id, title, tags, createdAt, url } }, ref) => {
           </div>
           <div>
             {tags.map((tag) => (
-              <Tag key={tag} name={tag} />
+              <Tag key={tag.id} name={tag.id} />
             ))}
           </div>
         </div>
