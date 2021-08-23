@@ -37,13 +37,21 @@ const StyledInput = styled.input`
   }
 `;
 
-export const InputForm = ({ label, placeholder, type = 'text' }) => {
-  return (
+export const InputForm = React.forwardRef(
+  ({ label, placeholder, name, onChange, onBlur, type = 'text' }, ref) => (
     <Wrapper>
-      <label htmlFor={label}>{label}:</label>
-      <StyledInput id={label} type={type} placeholder={placeholder} />
+      <label htmlFor={name}>{label}:</label>
+      <StyledInput
+        id={name}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        onBlur={onBlur}
+        ref={ref}
+      />
     </Wrapper>
-  );
-};
+  )
+);
 
 InputForm.propTypes = {};
