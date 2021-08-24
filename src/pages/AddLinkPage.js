@@ -4,11 +4,11 @@ import { InputForm } from 'components/molecules/InputForm/InputForm.styles';
 import { PageInnerWrapper } from 'components/atoms/PageInnerWrapper/PageInnerWrapper';
 import { Button } from 'components/atoms/Button/Button';
 import styled from 'styled-components';
-import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
 import useGetTags from 'hooks/useGetTags';
 import { getTagOptions } from 'Utils/DataUtils';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
+import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ const AddLinkPage = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => console.log(data);
@@ -30,6 +31,7 @@ const AddLinkPage = () => {
     <PageInnerWrapper>
       <SectionTitle>Add new link</SectionTitle>
       <p>✂ Paste your url below, give it fancy title and appropriate tags ✨</p>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputForm
           label={'Your url'}
@@ -42,11 +44,22 @@ const AddLinkPage = () => {
         {loading ? (
           <LoaderSpinner />
         ) : (
-          <MultiSelect
-            name="tags"
-            placeholder="Choose tags"
-            options={getTagOptions(tags)}
-          />
+          <>
+            <Controller
+              name="tags"
+              rules={{ required: true }}
+              control={control}
+              render={({ field }) => (
+                <MultiSelect
+                  isMulti
+                  {...field}
+                  options={getTagOptions(tags)}
+                  isClearable={true}
+                />
+              )}
+            />
+            {errors.tags?.type === 'required' && 'Tags are required'}
+          </>
         )}
         <ButtonWrapper>
           <Button type="submit">Add link</Button>
