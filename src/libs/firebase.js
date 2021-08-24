@@ -31,5 +31,9 @@ export const getTags = async () => {
 
 export const getTagById = async (tagId) => {
   const ref = db.collection('tags').doc(tagId);
-  return ref.get();
+  return await ref.get();
+};
+
+export const createTag = async (data) => {
+  return await db.collection('tags').add(data);
 };
