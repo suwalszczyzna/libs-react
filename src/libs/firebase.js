@@ -37,3 +37,15 @@ export const getTagById = async (tagId) => {
 export const createTag = async (data) => {
   return await db.collection('tags').add(data);
 };
+
+export const createLink = async (data) => {
+  const newItem = {
+    tags: data.tags.map((tag) => {
+      return db.doc(`tags/${tag.value}`);
+    }),
+    title: data.title,
+    url: data.url,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+  return await db.collection('links').add(newItem);
+};
