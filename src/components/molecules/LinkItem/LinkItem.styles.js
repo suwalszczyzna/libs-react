@@ -2,15 +2,20 @@ import styled from 'styled-components';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
 
 export const LinkCard = styled.div`
-  width: 100%;
+  width: auto;
   min-height: 100px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   background: ${({ theme }) => theme.colors.elementBackground};
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(175, 186, 189, 0.25);
+  border-radius: ${({ theme }) => theme.sizes.borderRadius};
+  border: 1px solid ${({ theme }) => theme.colors.stroke};
+  box-shadow: ${({ theme }) => theme.misc.mainShadow};
   transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.misc.hoverShadow};
+  }
 
   & > div:first-child {
     display: flex;

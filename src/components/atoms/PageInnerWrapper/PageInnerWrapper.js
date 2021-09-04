@@ -3,10 +3,10 @@ import { SectionTitle } from 'components/atoms/SectionTitle/SectionTitle';
 
 export const PageInnerWrapper = styled.div`
   & > *:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   ${SectionTitle} {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 `;

@@ -1,6 +1,6 @@
 export const theme = {
   colors: {
-    siteBackground: '#FAFAFA',
+    siteBackground: '#F0F2F5',
     elementBackground: '#FFFFFF',
     main: '#111F28',
     secondary: '#818487',
@@ -10,7 +10,7 @@ export const theme = {
     success: '#198754',
     successHover: '#22a969',
     warning: '#FFC107',
-    stroke: '#F0F0F0',
+    stroke: '#e3e3e3',
     white: '#FFF',
   },
   fonts: {
@@ -23,5 +23,11 @@ export const theme = {
   },
   sizes: {
     siteWidth: '750px',
+    borderRadius: '10px',
+  },
+  misc: {
+    mainShadow: '0 1px 2px rgba(175, 186, 189, 0.4)',
+    hoverShadow:
+      'rgba(17, 31, 40, 0.05) 0px 1px 1px, rgba(17, 31, 40, 0.05) 0px 2px 2px, rgba(17, 31, 40, 0.05) 0px 4px 4px, rgba(17, 31, 40, 0.05) 0px 8px 8px, rgba(17, 31, 40, 0.05) 0px 16px 16px;',
   },
 };

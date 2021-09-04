@@ -6,12 +6,12 @@ export const StyledSelect = styled(CreatableSelect)`
     height: 40px;
     box-sizing: border-box;
     padding-left: 5px;
-    border-radius: 15px;
+    border-radius: ${({ theme }) => theme.sizes.borderRadius};
     border: none;
-    box-shadow: 0 2px 4px rgba(175, 186, 189, 0.25);
+    box-shadow: ${({ theme }) => theme.misc.mainShadow};
 
     &--is-focused {
-      border: 2px solid ${({ theme }) => theme.colors.accent};
+      border: 2px solid ${({ theme }) => theme.colors.accent} !important;
     }
   }
 
@@ -35,7 +35,7 @@ export const StyledSelect = styled(CreatableSelect)`
 
   .Select__menu {
     padding: 10px 0;
-    border-radius: 15px;
+    border-radius: ${({ theme }) => theme.sizes.borderRadius};
     border: none;
     font-size: ${({ theme }) => theme.fonts.s};
   }

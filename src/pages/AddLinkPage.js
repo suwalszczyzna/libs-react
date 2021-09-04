@@ -13,6 +13,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
+import { useHistory } from 'react-router-dom';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const Form = styled.form`
 
 const AddLinkPage = () => {
   const { tags, loading } = useGetTags();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -40,7 +42,7 @@ const AddLinkPage = () => {
     createLink(data)
       .then((docRef) => {
         console.log(`Doc crated with id ${docRef.id}`);
-        toast.success('🎉 New link added! Thanks 😎');
+        history.push('/');
       })
       .catch((error) => {
         console.error(`Error while adding doc: ${error}`);

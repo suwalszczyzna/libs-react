@@ -10,8 +10,8 @@ export const Button = styled.button`
       ? ({ theme }) => theme.colors.danger
       : ({ theme }) => theme.colors.accent};
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 2px 4px rgba(175, 186, 189, 0.5);
+  border-radius: ${({ theme }) => theme.sizes.borderRadius};
+  box-shadow: ${({ theme }) => theme.misc.mainShadow};
   cursor: pointer;
 
   transition: all 0.2s ease-in-out;
