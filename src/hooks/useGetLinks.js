@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLinks } from 'libs/firebase';
+import { getLinks } from 'api/firebase';
 
 export default function useGetLinks(lastItem) {
   const [loading, setLoading] = useState(true);

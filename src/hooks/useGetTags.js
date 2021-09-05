@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTags } from 'libs/firebase';
+import { getTags } from 'api/firebase';
 
 export default function useGetTags() {
   const [loading, setLoading] = useState(true);

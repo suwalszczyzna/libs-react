@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionTitle } from 'components/atoms/SectionTitle/SectionTitle';
 import { PageInnerWrapper } from 'components/atoms/PageInnerWrapper/PageInnerWrapper';
 import { Button } from 'components/atoms/Button/Button';
@@ -8,12 +8,14 @@ import { getTagOptions } from 'Utils/DataUtils';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 import { Controller, useForm } from 'react-hook-form';
 import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
-import { createLink } from 'libs/firebase';
+import { createLink } from 'api/firebase';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
 import { useHistory } from 'react-router-dom';
+import { backendServiceApi, endpoints } from 'api/backend';
+import useDebounce from 'hooks/useDebounce';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -36,8 +38,29 @@ const AddLinkPage = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: 'onBlur',
+  });
+
+  const [inputUrl, setInputUrl] = useState('');
+
+  const debounceInputUrl = useDebounce(inputUrl, 500);
+  useEffect(() => {
+    if (debounceInputUrl) {
+      backendServiceApi
+        .get(`${endpoints.site_info}?url=${debounceInputUrl}/`)
+        .then((response) => {
+          console.log(response.data);
+          setValue('title', response.data.title, { shouldValidate: true });
+        })
+        .catch(() => {
+          setValue('title', '', { shouldValidate: true });
+        });
+    }
+  }, [debounceInputUrl, setValue]);
+
   const onSubmit = (data) => {
     createLink(data)
       .then((docRef) => {
@@ -67,6 +90,7 @@ const AddLinkPage = () => {
               message: 'Please enter a valid url, eg. https://google.com',
             },
           })}
+          onChange={(event) => setInputUrl(event.target.value)}
         />
         {errors.url && (
           <FormErrorMessage>{errors.url.message}</FormErrorMessage>
