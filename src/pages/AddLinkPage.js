@@ -31,7 +31,7 @@ const Form = styled.form`
 `;
 
 const AddLinkPage = () => {
-  const { tags, loading } = useGetTags();
+  const { tags } = useGetTags();
   const history = useHistory();
   const {
     register,
@@ -45,18 +45,21 @@ const AddLinkPage = () => {
   });
 
   const [inputUrl, setInputUrl] = useState('');
-
+  const [loadingTitle, setLoadingTitle] = useState(false);
   const debounceInputUrl = useDebounce(inputUrl, 500);
   useEffect(() => {
     if (debounceInputUrl) {
+      setLoadingTitle(true);
       backendServiceApi
         .get(`${endpoints.site_info}?url=${debounceInputUrl}/`)
         .then((response) => {
           console.log(response.data);
           setValue('title', response.data.title, { shouldValidate: true });
+          setLoadingTitle(false);
         })
         .catch(() => {
           setValue('title', '', { shouldValidate: true });
+          setLoadingTitle(false);
         });
     }
   }, [debounceInputUrl, setValue]);
@@ -95,35 +98,35 @@ const AddLinkPage = () => {
         {errors.url && (
           <FormErrorMessage>{errors.url.message}</FormErrorMessage>
         )}
-        <InputForm
-          label={'Title'}
-          {...register('title', { required: 'Title is required' })}
-        />
-        {errors.title && (
-          <FormErrorMessage>{errors.title.message}</FormErrorMessage>
-        )}
-        {loading ? (
+        {loadingTitle ? (
           <LoaderSpinner />
         ) : (
           <>
-            <Controller
-              name="tags"
-              rules={{ required: true }}
-              control={control}
-              render={({ field }) => (
-                <MultiSelect
-                  isMulti
-                  {...field}
-                  options={getTagOptions(tags)}
-                  isClearable={true}
-                  placeholder="Choose tags"
-                />
-              )}
+            <InputForm
+              label={'Title'}
+              {...register('title', { required: 'Title is required' })}
             />
-            {errors.tags?.type === 'required' && (
-              <FormErrorMessage>Any tag is required</FormErrorMessage>
+            {errors.title && (
+              <FormErrorMessage>{errors.title.message}</FormErrorMessage>
             )}
           </>
+        )}
+        <Controller
+          name="tags"
+          rules={{ required: true }}
+          control={control}
+          render={({ field }) => (
+            <MultiSelect
+              isMulti
+              {...field}
+              options={getTagOptions(tags)}
+              isClearable={true}
+              placeholder="Choose tags"
+            />
+          )}
+        />
+        {errors.tags?.type === 'required' && (
+          <FormErrorMessage>Any tag is required</FormErrorMessage>
         )}
         <ButtonWrapper>
           <Button type="submit">Add link</Button>
