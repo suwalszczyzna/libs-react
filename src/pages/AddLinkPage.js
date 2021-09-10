@@ -9,7 +9,7 @@ import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 import { Controller, useForm } from 'react-hook-form';
 import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
 import { createLink } from 'libs/firebase';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
@@ -35,20 +35,18 @@ const AddLinkPage = () => {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     createLink(data)
-      .then((docRef) => {
-        console.log(`Doc crated with id ${docRef.id}`);
-        history.push('/');
+      .then(() => {
+        toast.success('Link was added. Thanks! 😺');
       })
       .catch((error) => {
         console.error(`Error while adding doc: ${error}`);
-        toast.error(`Something goes wrong 😨`);
+        toast.error(`Something went wrong 😨`);
       })
-      .finally(() => reset());
+      .finally(() => history.push('/'));
   };
 
   return (
@@ -105,7 +103,6 @@ const AddLinkPage = () => {
           <Button type="submit">Add link</Button>
         </ButtonWrapper>
       </Form>
-      <ToastContainer />
     </PageInnerWrapper>
   );
 };
