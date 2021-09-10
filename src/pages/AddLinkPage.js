@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { SectionTitle } from 'components/atoms/SectionTitle/SectionTitle';
 import { PageInnerWrapper } from 'components/atoms/PageInnerWrapper/PageInnerWrapper';
 import { Button } from 'components/atoms/Button/Button';
-import styled from 'styled-components';
 import useGetTags from 'hooks/useGetTags';
 import { getTagOptions } from 'Utils/DataUtils';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
@@ -16,19 +15,7 @@ import { InputForm } from 'components/molecules/InputForm/InputForm';
 import { useHistory } from 'react-router-dom';
 import { backendServiceApi, endpoints } from 'api/backend';
 import useDebounce from 'hooks/useDebounce';
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-`;
-
-const Form = styled.form`
-  & > *:not(p) {
-    margin-top: 20px;
-  }
-`;
+import { ButtonWrapper, Form } from 'pages/AddLinkPage.styles';
 
 const AddLinkPage = () => {
   const { tags } = useGetTags();
@@ -47,6 +34,7 @@ const AddLinkPage = () => {
   const [inputUrl, setInputUrl] = useState('');
   const [loadingTitle, setLoadingTitle] = useState(false);
   const debounceInputUrl = useDebounce(inputUrl, 500);
+
   useEffect(() => {
     if (debounceInputUrl) {
       setLoadingTitle(true);

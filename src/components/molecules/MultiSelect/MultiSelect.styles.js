@@ -14,7 +14,6 @@ export const StyledSelect = styled(CreatableSelect)`
       border: 2px solid ${({ theme }) => theme.colors.accent} !important;
     }
   }
-
   .Select__placeholder {
     font-size: ${({ theme }) => theme.fonts.s};
     color: ${({ theme }) => theme.colors.main};
