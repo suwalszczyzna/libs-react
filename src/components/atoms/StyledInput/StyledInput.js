@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: stretch;
-`;
-
 export const StyledInput = styled.input`
   flex-grow: 1;
   height: 40px;

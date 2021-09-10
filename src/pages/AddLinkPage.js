@@ -58,6 +58,7 @@ const AddLinkPage = () => {
         <InputForm
           label={'Your url'}
           placeholder={'eg. https://google.com'}
+          favIcon={true}
           {...register('url', {
             required: 'Url is required',
             pattern: {
