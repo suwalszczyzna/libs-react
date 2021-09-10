@@ -41,6 +41,7 @@ const AddLinkPage = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     mode: 'onBlur',
@@ -61,12 +62,12 @@ const AddLinkPage = () => {
     if (debounceUrl) {
       getFavicon(debounceUrl)
         .then((r) => {
-          console.log(r);
           setFaviconUrl(r);
+          setValue('favicon', r);
         })
         .catch((e) => console.error(e));
     }
-  }, [debounceUrl]);
+  }, [debounceUrl, setValue]);
 
   return (
     <PageInnerWrapper>

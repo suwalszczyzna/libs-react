@@ -3,23 +3,21 @@ import PropTypes from 'prop-types';
 import { CardTitle } from 'components/atoms/CardTitle/CardTitle';
 import { Tag } from 'components/atoms/Tag/Tag';
 import { LinkShape } from 'Types';
-import {
-  LinkCard,
-  LinkFavicon,
-} from 'components/molecules/LinkItem/LinkItem.styles';
+import { LinkCard } from 'components/molecules/LinkItem/LinkItem.styles';
 import { SmallText } from 'components/atoms/SmallText/SmallText';
 import { getBaseUrl } from 'Utils/TextUtils';
 import { getFormattedData } from 'Utils/DateUtils';
+import { Favicon } from 'components/molecules/Favicon/Favicon';
 
-const LinkItem = ({ link: { id, title, tags, createdAt, url } }, ref) => {
+const LinkItem = (
+  { link: { id, title, tags, createdAt, url, favicon } },
+  ref
+) => {
   return (
     <LinkCard>
       <div ref={ref}>
         <div>
-          <LinkFavicon
-            src={`https://s2.googleusercontent.com/s2/favicons?sz=128&domain_url=${url}`}
-            alt={`Favicon of ${title}`}
-          />
+          <Favicon imgUrl={favicon} dark />
           <SmallText>{getFormattedData(createdAt, 'MMM DD')}</SmallText>
         </div>
         <div>

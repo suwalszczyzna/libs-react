@@ -46,6 +46,7 @@ export const createLink = async (data) => {
     title: data.title,
     url: data.url,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    favicon: data.favicon,
   };
   return await db.collection('links').add(newItem);
 };

@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: stretch;
+
+  *:not(:first-child) {
+    margin-left: 10px;
+  }
 `;
 
 export const InputForm = React.forwardRef(
@@ -17,8 +21,8 @@ export const InputForm = React.forwardRef(
       name,
       onChange,
       onBlur,
-      favIcon,
       faviconUrl,
+      favIcon = false,
       type = 'text',
     },
     ref
