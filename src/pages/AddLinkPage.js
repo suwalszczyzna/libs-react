@@ -60,7 +60,7 @@ const AddLinkPage = () => {
       })
       .catch((error) => {
         console.error(`Error while adding doc: ${error}`);
-        toast.error(`Something goes wrong 😨`);
+        toast.error(`Something went wrong 😨`);
       })
       .finally(() => reset());
   };
