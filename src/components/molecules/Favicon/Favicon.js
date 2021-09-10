@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   width: 40px;
   height: 40px;
   background: ${({ theme }) => theme.colors.elementBackground};
+  background-image: ${(props) => props.imgUrl && `url('${props.imgUrl}')`};
+  background-size: 100%;
   border-radius: ${({ theme }) => theme.sizes.borderRadius};
   box-shadow: ${({ theme }) => theme.misc.mainShadow};
   margin-left: 10px;
@@ -16,6 +18,7 @@ const Wrapper = styled.div`
   svg {
     fill: ${({ theme }) => theme.colors.siteBackground};
   }
+
   img {
     height: 100%;
     width: 100%;
@@ -24,10 +27,8 @@ const Wrapper = styled.div`
 
 export const Favicon = ({ imgUrl }) => {
   return (
-    <Wrapper>
-      {imgUrl ? (
-        <img src={imgUrl} alt={'Favicon'} />
-      ) : (
+    <Wrapper imgUrl={imgUrl}>
+      {!imgUrl && (
         <svg
           width="31"
           height="31"

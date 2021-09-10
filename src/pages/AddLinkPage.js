@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionTitle } from 'components/atoms/SectionTitle/SectionTitle';
 import { PageInnerWrapper } from 'components/atoms/PageInnerWrapper/PageInnerWrapper';
 import { Button } from 'components/atoms/Button/Button';
@@ -14,6 +14,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
 import { useHistory } from 'react-router-dom';
+import { getFavicon } from 'libs/faviconGrabber';
+import useDebounce from 'hooks/useDebounce';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -31,12 +33,18 @@ const Form = styled.form`
 const AddLinkPage = () => {
   const { tags, loading } = useGetTags();
   const history = useHistory();
+  const [inputUrl, setInputUrl] = useState('');
+  const debounceUrl = useDebounce(inputUrl, 500);
+  const [faviconUrl, setFaviconUrl] = useState('');
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: 'onBlur',
+  });
   const onSubmit = (data) => {
     createLink(data)
       .then(() => {
@@ -49,6 +57,17 @@ const AddLinkPage = () => {
       .finally(() => history.push('/'));
   };
 
+  useEffect(() => {
+    if (debounceUrl) {
+      getFavicon(debounceUrl)
+        .then((r) => {
+          console.log(r);
+          setFaviconUrl(r);
+        })
+        .catch((e) => console.error(e));
+    }
+  }, [debounceUrl]);
+
   return (
     <PageInnerWrapper>
       <SectionTitle>Add new link</SectionTitle>
@@ -59,6 +78,7 @@ const AddLinkPage = () => {
           label={'Your url'}
           placeholder={'eg. https://google.com'}
           favIcon={true}
+          faviconUrl={faviconUrl}
           {...register('url', {
             required: 'Url is required',
             pattern: {
@@ -66,6 +86,7 @@ const AddLinkPage = () => {
               message: 'Please enter a valid url, eg. https://google.com',
             },
           })}
+          onChange={(event) => setInputUrl(event.target.value)}
         />
         {errors.url && (
           <FormErrorMessage>{errors.url.message}</FormErrorMessage>
