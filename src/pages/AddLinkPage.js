@@ -8,7 +8,7 @@ import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 import { Controller, useForm } from 'react-hook-form';
 import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
 import { createLink } from 'api/firebase';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
@@ -54,13 +54,12 @@ const AddLinkPage = () => {
 
   const onSubmit = (data) => {
     createLink(data)
-      .then((docRef) => {
-        console.log(`Doc crated with id ${docRef.id}`);
+      .then(() => {
+        toast.success('New link added, thanks! 😺');
         history.push('/');
       })
       .catch((error) => {
         console.error(`Error while adding doc: ${error}`);
-        toast.error(`Something went wrong 😨`);
       })
       .finally(() => reset());
   };
@@ -120,7 +119,6 @@ const AddLinkPage = () => {
           <Button type="submit">Add link</Button>
         </ButtonWrapper>
       </Form>
-      <ToastContainer />
     </PageInnerWrapper>
   );
 };
