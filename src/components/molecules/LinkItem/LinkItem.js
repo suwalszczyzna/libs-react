@@ -29,7 +29,7 @@ const LinkItem = (
           </div>
           <div>
             {tags.map((tag) => (
-              <Tag key={tag.id} name={tag.id} />
+              <Tag key={tag} name={tag} />
             ))}
           </div>
         </div>

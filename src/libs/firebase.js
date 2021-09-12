@@ -40,9 +40,7 @@ export const createTag = async (data) => {
 
 export const createLink = async (data) => {
   const newItem = {
-    tags: data.tags.map((tag) => {
-      return db.doc(`tags/${tag.value}`);
-    }),
+    tags: data.tags.map((tag) => tag.value),
     title: data.title,
     url: data.url,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
