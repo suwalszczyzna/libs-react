@@ -7,11 +7,15 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid ${({ theme }) => theme.colors.stroke};
-  margin-bottom: 50px;
+  @media only screen and ${device.mobileS} {
+    margin-bottom: 10px;
+  }
+  @media only screen and ${device.tablet} {
+    margin-bottom: 30px;
+  }
 `;
 
 export const InnerWrapper = styled.div`
-  padding: 25px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,11 +28,12 @@ export const InnerWrapper = styled.div`
 
   @media only screen and ${device.mobileS} {
     margin: 10px;
+    padding: 5px;
   }
 
   @media only screen and ${device.tablet} {
-    // width: ${({ theme }) => theme.sizes.siteWidth};
     margin: 0 auto;
+    padding: 25px 0;
   }
 `;
 
