@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const grabberUrl = 'http://favicongrabber.com/api/';
+const grabberUrl = 'https://favicongrabber.com/api/';
 
 const endpoints = {
   grab: 'grab/',
