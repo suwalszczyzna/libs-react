@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import LinkItem from 'components/molecules/LinkItem/LinkItem';
 import useGetLinks from 'hooks/useGetLinks';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
@@ -6,21 +6,32 @@ import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 export const LinkItemList = () => {
   const [lastItem, setLastItem] = useState(0);
   const { loading, error, links } = useGetLinks(lastItem);
+  const observer = useRef(null);
+  const lastLinkRef = useRef(null);
 
-  const observer = useRef();
-  const lastLinkRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setLastItem(links[links.length - 1]);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, links]
-  );
+  const getMoreLinks = useCallback(() => {
+    if (loading) return;
+    setLastItem(links[links.length - 1]);
+  }, [links, loading]);
+
+  useEffect(() => {
+    const options = {
+      root: document,
+      threshold: 1,
+    };
+    const callback = (entries) => {
+      if (entries[0].isIntersecting) {
+        getMoreLinks();
+      }
+    };
+    observer.current = new IntersectionObserver(callback, options);
+    if (lastLinkRef.current) {
+      observer.current.observe(lastLinkRef.current);
+    }
+    return () => {
+      observer.current.disconnect();
+    };
+  }, [getMoreLinks]);
 
   return (
     <>
