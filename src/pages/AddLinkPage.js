@@ -8,14 +8,13 @@ import { getTagOptions } from 'Utils/DataUtils';
 import { LoaderSpinner } from 'components/atoms/LoaderSpinner/LoaderSpinner';
 import { Controller, useForm } from 'react-hook-form';
 import { MultiSelect } from 'components/molecules/MultiSelect/MultiSelect';
-import { createLink } from 'libs/firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMessage';
 import { InputForm } from 'components/molecules/InputForm/InputForm';
 import { useHistory } from 'react-router-dom';
-import { getFavicon } from 'libs/faviconGrabber';
 import useDebounce from 'hooks/useDebounce';
+import { getFavicon, getSiteTitle, createLink } from 'api/api';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -48,8 +47,11 @@ const AddLinkPage = () => {
   });
   const onSubmit = (data) => {
     createLink(data)
-      .then(() => {
-        toast.success('Link was added. Thanks! 😺');
+      .then((r) => {
+        console.log(r);
+        toast.success(
+          `Link was added. Thanks! 😺 We'll publish it after review`
+        );
       })
       .catch((error) => {
         console.error(`Error while adding doc: ${error}`);
@@ -64,6 +66,11 @@ const AddLinkPage = () => {
         .then((r) => {
           setFaviconUrl(r);
           setValue('favicon', r);
+        })
+        .catch((e) => console.error(e));
+      getSiteTitle(debounceUrl)
+        .then((r) => {
+          setValue('title', r);
         })
         .catch((e) => console.error(e));
     }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 
-export const StyledSelect = styled(Select)`
+export const StyledSelect = styled(CreatableSelect)`
   .Select__control {
     height: 40px;
     box-sizing: border-box;

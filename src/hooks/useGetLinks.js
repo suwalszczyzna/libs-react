@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react';
-import { getLinks } from 'libs/firebase';
+import { getLinks } from 'api/api';
 
 export default function useGetLinks(lastItem) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [links, setLinks] = useState([]);
+  const [nextPage, setNextPage] = useState(null);
 
-  useEffect(() => setLinks([]), []);
+  useEffect(() => {
+    setLinks([]);
+    setNextPage(null);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
     setError(false);
 
-    getLinks(lastItem)
+    getLinks(nextPage)
       .then((data) => {
+        setNextPage(data.next);
         setLinks((prevState) => {
-          return [...prevState, ...data.docs];
+          return [...prevState, ...data.results];
         });
         setLoading(false);
       })
@@ -24,7 +29,7 @@ export default function useGetLinks(lastItem) {
         setError(e);
         setLoading(false);
       });
-  }, [lastItem]);
+  }, [lastItem]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return { loading, error, links };
+  return { loading, error, links, nextPage };
 }
