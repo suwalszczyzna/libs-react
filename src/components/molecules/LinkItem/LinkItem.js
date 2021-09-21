@@ -10,15 +10,15 @@ import { getFormattedData } from 'Utils/DateUtils';
 import { Favicon } from 'components/molecules/Favicon/Favicon';
 
 const LinkItem = (
-  { link: { id, title, tags, createdAt, url, favicon } },
+  { link: { id, title, tags, created, url, faviconUrl } },
   ref
 ) => {
   return (
     <LinkCard>
       <div ref={ref}>
         <div>
-          <Favicon imgUrl={favicon} dark />
-          <SmallText>{getFormattedData(createdAt, 'MMM DD')}</SmallText>
+          <Favicon imgUrl={faviconUrl} dark />
+          <SmallText>{getFormattedData(created, 'MMM DD')}</SmallText>
         </div>
         <div>
           <div>
@@ -29,7 +29,7 @@ const LinkItem = (
           </div>
           <div>
             {tags.map((tag) => (
-              <Tag key={tag} name={tag} />
+              <Tag key={tag.id} name={tag.name} />
             ))}
           </div>
         </div>

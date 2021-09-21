@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTags } from 'libs/firebase';
+import { getTags } from 'api/api';
 
 export default function useGetTags() {
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ export default function useGetTags() {
     setError(false);
     getTags()
       .then((data) => {
-        setTags([...data.docs]);
+        setTags([...data]);
         setLoading(false);
       })
       .catch((e) => {
