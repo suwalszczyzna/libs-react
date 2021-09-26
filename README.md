@@ -1,6 +1,6 @@
 
 # Daemon's libs
-[app logo](/public/logo192.png)
+![app logo](/public/logo192.png)
 
 Side-project on my React learning path. It's a simple app for storage interesting resources found somewhere on the Internet
 
