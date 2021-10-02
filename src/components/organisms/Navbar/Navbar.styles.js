@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'assets/styles/rwd';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -21,11 +22,6 @@ export const InnerWrapper = styled.div`
   align-items: center;
   width: ${({ theme }) => theme.sizes.siteWidth};
 
-  h1 {
-    font-size: ${({ theme }) => theme.fonts.xxl};
-    color: ${({ theme }) => theme.colors.white};
-  }
-
   @media only screen and ${device.mobileS} {
     margin: 10px;
     padding: 5px;
@@ -37,11 +33,13 @@ export const InnerWrapper = styled.div`
   }
 `;
 
-export const Logo = styled.img`
-  cursor: pointer;
-  transition: filter 0.2s ease-in-out;
+export const LogoLink = styled(Link)`
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.fonts.xxl};
+  color: ${({ theme }) => theme.colors.white};
+  transition: color 0.2s ease-in-out;
 
-  :hover {
-    filter: opacity(70%);
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
