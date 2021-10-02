@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavItemButton } from 'components/atoms/NavItemButton/NavItemButton';
-import { InnerWrapper, Wrapper } from './Navbar.styles';
+import { InnerWrapper, LogoLink, Wrapper } from './Navbar.styles';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => (
   <Wrapper>
     <InnerWrapper>
-      <Link to="/">
-        <h1>links</h1>
-      </Link>
+      <LogoLink to="/">
+        <span>Daemon's libs</span>
+      </LogoLink>
 
       <Link to="/add-link">
         <NavItemButton>+ Add new link</NavItemButton>
