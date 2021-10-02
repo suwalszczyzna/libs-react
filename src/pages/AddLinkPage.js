@@ -14,7 +14,8 @@ import { FormErrorMessage } from 'components/atoms/FormErrorMessage/FormErrorMes
 import { InputForm } from 'components/molecules/InputForm/InputForm';
 import { useHistory } from 'react-router-dom';
 import useDebounce from 'hooks/useDebounce';
-import { getFavicon, getSiteTitle, createLink } from 'api/api';
+import { getFavicon, getSiteTitle } from 'api/siteInfo';
+import { createLink } from 'api/links';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -48,7 +49,6 @@ const AddLinkPage = () => {
   const onSubmit = (data) => {
     createLink(data)
       .then((r) => {
-        console.log(r);
         toast.success(
           `Link was added. Thanks! 😺 We'll publish it after review`
         );
@@ -62,17 +62,13 @@ const AddLinkPage = () => {
 
   useEffect(() => {
     if (debounceUrl) {
-      getFavicon(debounceUrl)
-        .then((r) => {
-          setFaviconUrl(r);
-          setValue('favicon', r);
-        })
-        .catch((e) => console.error(e));
-      getSiteTitle(debounceUrl)
-        .then((r) => {
-          setValue('title', r);
-        })
-        .catch((e) => console.error(e));
+      getFavicon(debounceUrl).then((icon) => {
+        setFaviconUrl(icon);
+        setValue('favicon', icon);
+      });
+      getSiteTitle(debounceUrl).then((r) => {
+        setValue('title', r);
+      });
     }
   }, [debounceUrl, setValue]);
 

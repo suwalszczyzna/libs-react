@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTags } from 'api/api';
+import { getTags } from 'api/tags';
 
 export default function useGetTags() {
   const [loading, setLoading] = useState(true);

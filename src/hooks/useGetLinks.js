@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLinks } from 'api/api';
+import { getLinks } from 'api/links';
 
 export default function useGetLinks(lastItem) {
   const [loading, setLoading] = useState(true);
@@ -17,10 +17,10 @@ export default function useGetLinks(lastItem) {
     setError(false);
 
     getLinks(nextPage)
-      .then((data) => {
-        setNextPage(data.next);
+      .then((links) => {
+        setNextPage(links.next);
         setLinks((prevState) => {
-          return [...prevState, ...data.results];
+          return [...prevState, ...links.results];
         });
         setLoading(false);
       })
